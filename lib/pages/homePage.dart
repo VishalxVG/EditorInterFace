@@ -2,6 +2,7 @@
 
 import 'package:editorapp/components/customButton.dart';
 import 'package:editorapp/pages/addTextPage.dart';
+import 'package:editorapp/stateManagement/TextState.dart';
 
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  TextState textState = TextState();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +57,9 @@ class _HomePageState extends State<HomePage> {
     return Row(
       children: [
         CustomButton(
-          onTap: () {},
+          onTap: () {
+            print(TextState().texts.last.text);
+          },
           buttonText: "Undo",
           buttonIcon: const Icon(Icons.undo),
         ),

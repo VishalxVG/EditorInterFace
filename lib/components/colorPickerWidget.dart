@@ -40,9 +40,9 @@ class _ColorPickerWidgetState extends State<ColorPickerWidget> {
                 onPressed: () {
                   setState(() {
                     currentColor = pickerColor;
-                    textState.updateFontColor(currentColor);
-                    Navigator.of(context).pop();
                   });
+                  textState.updateFontColor(currentColor);
+                  Navigator.of(context).pop();
                 },
                 child: const Text("Got it"),
               )
@@ -77,7 +77,7 @@ class _ColorPickerWidgetState extends State<ColorPickerWidget> {
             Container(
               height: 20,
               width: 20,
-              color: Provider.of<TextState>(context).selectedFontColor,
+              color: currentColor,
             )
           ],
         ),

@@ -46,7 +46,6 @@ class _SizePickerWidgetState extends State<SizePickerWidget> {
                         'Font Size : $size',
                       ),
                       onTap: () {
-                        textState.updatedFontSize(size);
                         Navigator.of(context).pop(size);
                       },
                     ),
@@ -64,31 +63,32 @@ class _SizePickerWidgetState extends State<SizePickerWidget> {
     );
 
     if (newSize != null) {
-      setState(() {
-        selectedSize = newSize;
-      });
+      // Update the selected size in TextState
+      textState.updatedFontSize(newSize);
+      selectedSize = newSize;
+
+      // Update the selected size for the local state if needed
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TextState>(
-      builder: (context, textstate, _) {
-        return SizedBox(
-          width: 150,
-          height: 50,
-          child: ElevatedButton(
-            style: const ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(Colors.green),
-            ),
-            onPressed: () => _showTextSizePickerDialog(context, textstate),
-            child: Text(
-              "Text Size : ${textstate.selectedFontSize.toStringAsFixed(1)}",
-              style: const TextStyle(fontSize: 17),
-            ),
-          ),
-        );
-      },
+    return SizedBox(
+      width: 150,
+      height: 50,
+      child: ElevatedButton(
+        style: const ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll(Colors.green),
+        ),
+        onPressed: () => _showTextSizePickerDialog(
+          context,
+          Provider.of<TextState>(context, listen: false),
+        ),
+        child: Text(
+          "Text Size : ${Provider.of<TextState>(context).selectedFontSize.toStringAsFixed(1)}",
+          style: const TextStyle(fontSize: 17),
+        ),
+      ),
     );
   }
 }

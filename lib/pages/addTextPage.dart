@@ -4,6 +4,7 @@ import 'package:editorapp/components/colorPickerWidget.dart';
 import 'package:editorapp/components/customButton.dart';
 import 'package:editorapp/components/customFontPicker.dart';
 import 'package:editorapp/components/sizePickerButton.dart';
+
 import 'package:editorapp/stateManagement/TextState.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,8 +17,6 @@ class AddTextPage extends StatefulWidget {
 }
 
 class _AddTextPageState extends State<AddTextPage> {
-  TextEditingController _controller = TextEditingController();
-  String editedText = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +32,12 @@ class _AddTextPageState extends State<AddTextPage> {
             padding: const EdgeInsets.only(bottom: 50),
             child: CustomButton(
               buttonText: "Add Text",
-              onTap: () {},
+              onTap: () {
+                Provider.of<TextState>(context, listen: false).addText();
+                // WidgetsBinding.instance.addPostFrameCallback((_) {
+                //   Navigator.of(context).pop();
+                // });
+              },
             ),
           ),
         ],
@@ -54,9 +58,7 @@ class _AddTextPageState extends State<AddTextPage> {
 
           //* TEXT FIELD FOR ENTERING TEXT
           TextField(
-            controller: _controller,
-            onChanged: (value) {
-              //! Updating the text using the textstate update text function
+            onSubmitted: (value) {
               Provider.of<TextState>(context, listen: false).updateText(value);
             },
             decoration: InputDecoration(
@@ -140,7 +142,8 @@ class _AddTextPageState extends State<AddTextPage> {
           //* Changed Text After Getting updated
           Consumer<TextState>(
             builder: (context, textState, _) {
-              _controller.text = textState.editedText;
+              print("Consumer is getting rebuilt");
+
               return SizedBox(
                 width: double.infinity,
                 child: Center(
