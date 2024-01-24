@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TextState extends ChangeNotifier {
   String editedText = '';
@@ -10,6 +11,9 @@ class TextState extends ChangeNotifier {
   List<TextElement> texts = [];
 
   void addText() {
+    print(
+      'Adding text: $editedText, Font: $selectedFont, Size: $selectedFontSize, Color: $selectedFontColor',
+    );
     texts.add(TextElement(
       text: editedText,
       selectedFont: selectedFont,

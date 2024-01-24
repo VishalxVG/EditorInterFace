@@ -5,6 +5,7 @@ import 'package:editorapp/pages/addTextPage.dart';
 import 'package:editorapp/stateManagement/TextState.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,7 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  TextState textState = TextState();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +58,11 @@ class _HomePageState extends State<HomePage> {
       children: [
         CustomButton(
           onTap: () {
-            print(TextState().texts.last.text);
+            if (Provider.of<TextState>(context, listen: false).texts.isEmpty) {
+              print("List is empty");
+            } else {
+              print("List is not empty");
+            }
           },
           buttonText: "Undo",
           buttonIcon: const Icon(Icons.undo),

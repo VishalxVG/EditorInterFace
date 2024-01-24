@@ -34,12 +34,21 @@ class _AddTextPageState extends State<AddTextPage> {
               buttonText: "Add Text",
               onTap: () {
                 Provider.of<TextState>(context, listen: false).addText();
-                // WidgetsBinding.instance.addPostFrameCallback((_) {
-                //   Navigator.of(context).pop();
-                // });
+
+                Future.delayed(Duration.zero, () {
+                  Navigator.of(context).pop();
+                });
               },
             ),
           ),
+          ElevatedButton(
+              onPressed: () {
+                print(Provider.of<TextState>(context, listen: false)
+                    .texts
+                    .last
+                    .text);
+              },
+              child: Text("data"))
         ],
       ),
     );

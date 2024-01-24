@@ -6,8 +6,12 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => TextState(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => TextState(),
+        ),
+      ],
       child: const MyApp(),
     ),
   );
