@@ -5,6 +5,7 @@ import 'package:editorapp/pages/addTextPage.dart';
 import 'package:editorapp/stateManagement/TextState.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,6 +33,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 10,
             ),
+            //* TEXT TO BE PUT HERE
             Container(
               decoration: BoxDecoration(
                 color: Colors.grey.shade400,
@@ -39,6 +41,46 @@ class _HomePageState extends State<HomePage> {
               ),
               width: double.infinity,
               height: 720,
+              child: Consumer<TextState>(
+                builder: (context, textstate, _) {
+                  return ListView.builder(
+                    itemCount: textstate.texts.length,
+                    itemBuilder: (context, index) {
+                      final textElement = textstate.texts[index];
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          left: textElement.position.dx,
+                          top: textElement.position.dy,
+                        ),
+                        child: Draggable(
+                          data: textElement,
+                          feedback: Text(
+                            textElement.text,
+                            style: TextStyle(
+                              fontSize: textElement.selectedFontSiz,
+                              fontWeight: FontWeight.w500,
+                              color: textElement.selectedFontColor,
+                            ),
+                          ),
+                          childWhenDragging: Container(),
+                          child: Text(
+                            textElement.text,
+                            style: TextStyle(
+                              fontSize: textElement.selectedFontSiz,
+                              fontWeight: FontWeight.w500,
+                              color: textElement.selectedFontColor,
+                            ),
+                          ),
+                          onDragEnd: (details) {
+                            textstate.updateTextPosition(
+                                textElement, details.offset);
+                          },
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -57,13 +99,7 @@ class _HomePageState extends State<HomePage> {
     return Row(
       children: [
         CustomButton(
-          onTap: () {
-            if (Provider.of<TextState>(context, listen: false).texts.isEmpty) {
-              print("List is empty");
-            } else {
-              print("List is not empty");
-            }
-          },
+          onTap: () {},
           buttonText: "Undo",
           buttonIcon: const Icon(Icons.undo),
         ),

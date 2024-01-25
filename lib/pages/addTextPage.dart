@@ -41,14 +41,6 @@ class _AddTextPageState extends State<AddTextPage> {
               },
             ),
           ),
-          ElevatedButton(
-              onPressed: () {
-                print(Provider.of<TextState>(context, listen: false)
-                    .texts
-                    .last
-                    .text);
-              },
-              child: Text("data"))
         ],
       ),
     );
