@@ -19,7 +19,9 @@ class CustomButton extends StatelessWidget {
       width: 150,
       child: ElevatedButton(
         style: const ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(Colors.green)),
+            backgroundColor: MaterialStatePropertyAll(
+          Color.fromARGB(255, 105, 172, 239),
+        )),
         onPressed: onTap,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

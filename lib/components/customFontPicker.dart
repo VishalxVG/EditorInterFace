@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-//TODO : ADD PHYSICAL ASSEST IN LOCAL DIRECTORY FOR FONTS AND THEN USE IT . USING HTTP FOR LOADING FONTS IS NOT WORKING
-
 class CustomFontPicker extends StatefulWidget {
   const CustomFontPicker({super.key});
 
@@ -81,17 +79,19 @@ class _CustomFontPickerState extends State<CustomFontPicker> {
       height: 50,
       child: ElevatedButton(
         style: const ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(Colors.green),
+          backgroundColor: MaterialStatePropertyAll(
+            Color.fromARGB(255, 105, 172, 239),
+          ),
         ),
         onPressed: () => _showFontPickerDialog(
           context,
-          Provider.of<TextState>(context),
+          Provider.of<TextState>(context, listen: false),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              Provider.of<TextState>(context).selectedFont,
+              Provider.of<TextState>(context, listen: false).selectedFont,
               style: const TextStyle(fontSize: 18),
             ),
             const Icon(

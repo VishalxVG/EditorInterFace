@@ -25,6 +25,11 @@ class TextState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void deleteTextElement(TextElement textElement) {
+    texts.remove(textElement);
+    notifyListeners();
+  }
+
   void resetValues() {
     editedText = '';
     selectedFont = 'Roboto';

@@ -10,7 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AddTextPage extends StatefulWidget {
-  const AddTextPage({super.key});
+  final String? addText;
+  const AddTextPage({
+    super.key,
+    this.addText,
+  });
 
   @override
   State<AddTextPage> createState() => _AddTextPageState();
@@ -21,7 +25,7 @@ class _AddTextPageState extends State<AddTextPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 31, 98, 33),
+        backgroundColor: const Color.fromARGB(255, 17, 86, 155),
         title: const Text("Add Text Page"),
       ),
       body: Column(
@@ -64,9 +68,9 @@ class _AddTextPageState extends State<AddTextPage> {
             },
             decoration: InputDecoration(
               hintText: "Enter a Text ",
-              enabledBorder: OutlineInputBorder(
+              enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: Colors.grey.shade500,
+                  color: Colors.grey,
                 ),
               ),
               focusedBorder: OutlineInputBorder(

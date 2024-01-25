@@ -78,7 +78,9 @@ class _SizePickerWidgetState extends State<SizePickerWidget> {
       height: 50,
       child: ElevatedButton(
         style: const ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(Colors.green),
+          backgroundColor: MaterialStatePropertyAll(
+            Color.fromARGB(255, 105, 172, 239),
+          ),
         ),
         onPressed: () => _showTextSizePickerDialog(
           context,

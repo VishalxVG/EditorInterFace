@@ -58,7 +58,9 @@ class _ColorPickerWidgetState extends State<ColorPickerWidget> {
       width: 150,
       child: ElevatedButton(
         style: const ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(Colors.green),
+          backgroundColor: MaterialStatePropertyAll(
+            Color.fromARGB(255, 105, 172, 239),
+          ),
         ),
         onPressed: () => _showFontColorDialog(
           context,

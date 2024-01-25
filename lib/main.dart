@@ -1,6 +1,5 @@
 import 'package:editorapp/pages/homePage.dart';
 import 'package:editorapp/stateManagement/TextState.dart';
-import 'package:editorapp/test/textHomePage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
